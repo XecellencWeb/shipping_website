@@ -45,6 +45,9 @@ const [signUpActive, setSignUpActive] = useState(false)
 
 
   useEffect(() => {
+
+      console.log(searchParams)
+
      if(searchParams.rejected && searchParams.rejectedtoken === rejectedToken){
       authBox(401,`So sorry you can't enter that page.`)
       router.replace('/')
@@ -64,7 +67,7 @@ const [signUpActive, setSignUpActive] = useState(false)
       setLoginActive(true)
     }
     if(searchParams.signup){
-      setLoginActive(true)
+      setSignUpActive(true)
     }
     
   }, [searchParams,pathname])
