@@ -1,6 +1,6 @@
 .authbox--container{
     scale: 0 0;
-    position: fixed;
+    position: absolute;
     top: 80vh;
     right: 0;
     display: flex;

@@ -1,7 +1,7 @@
 'use client'
 
 
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import ShowItems from '@components/ShowItems'
 import LogIn from '@components/Authentication/LogIn'
 import SignUp from '@components/Authentication/SignUp'
@@ -26,6 +26,10 @@ const Home = ({searchParams}:PropsParams) => {
 const router = useRouter()
 
 const pathname = usePathname()
+
+const [loginActive,setLoginActive] = useState(false)
+const [signUpActive, setSignUpActive] = useState(false)
+
 
     const verifyUser = async()=>{
       try {
@@ -54,13 +58,21 @@ const pathname = usePathname()
     if(searchParams.verifyuser && searchParams.accesstoken === accepttoken){
         verifyUser()
     }
+
+
+    if(searchParams.login){
+      setLoginActive(true)
+    }
+    if(searchParams.signup){
+      setLoginActive(true)
+    }
     
   }, [searchParams,pathname])
   
   return (<>
       {
-        searchParams.login ?<LogIn/>:
-        searchParams.signup && <SignUp/>
+        loginActive ?<LogIn/>:
+        signUpActive && <SignUp/>
       }
       <InformationComponent/>
       <ShowItems/>
