@@ -1,7 +1,7 @@
 'use client'
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import ShowItemsAdmin from '@components/ShowsItemsAdmin'
 import { useUserData } from '@context/userData'
 import { useRouter } from 'next/navigation'
@@ -22,10 +22,21 @@ const Profile = () => {
 
     const NotAllowed = ()=>{
       navigator.replace(`/?rejected=true&rejectedtoken=${rejectedToken}`)
+
+
+
+      useEffect(()=>{
+      
+        
+        loggedInUser && isBoss &&   NotAllowed()
+    
+      },[])
+
+
     }
 
   return (
-    loggedInUser && isBoss ?
+    
 
     <>
     <ShowItemsAdmin/>
@@ -34,10 +45,7 @@ const Profile = () => {
       <LogoutBtn/>
 
     </>
-    :(
-        
-        NotAllowed()
-    )
+    
   )
 }
 
