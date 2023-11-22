@@ -22,6 +22,8 @@ export const PATCH  = async(req:Request, {params}:any)=>{
         item.lastUpdated = new Date()
 
         await item.save()
+
+        
         const message = 'Sir, the goods you are expecting from spear gate shipping company current location has just been updated. please Visit our Website to see update.'
         const subject = 'Your Goods current Location has just be Updated'
         
@@ -33,15 +35,21 @@ export const PATCH  = async(req:Request, {params}:any)=>{
             linkname:'View update',
             linkurl:`${process.env.WEBSITE_URL}/userprofile`
         })
+        try {
+            for(const i of item.ownersEmail){
+                await sendMail({
+                    to:i,
+                    subject,
+                    html
+                })
+    
+                }
+        } catch (err:any) {
+            console.error(err)
 
-        for(const i of item.ownersEmail){
-            await sendMail({
-                to:i,
-                subject,
-                html
-            })
-
-            }
+            return new Response(JSON.stringify(err.message), {status:err.status || 500})
+        }
+        
 
         const allItems = await Goods.find().sort({lastUpdated:-1})
 
