@@ -23,18 +23,15 @@ const Profile = () => {
     const NotAllowed = ()=>{
       navigator.replace(`/?rejected=true&rejectedtoken=${rejectedToken}`
       )
+    }
 
 
-
-      useEffect(()=>{
+    useEffect(()=>{
       
         
-        !loggedInUser || !isBoss &&   NotAllowed()
-    
-      },[])
-
-
-    }
+      !loggedInUser || isBoss &&   NotAllowed()
+  
+    },[])
 
   return (
     
