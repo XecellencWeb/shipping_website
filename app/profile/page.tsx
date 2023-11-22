@@ -29,7 +29,7 @@ const Profile = () => {
       useEffect(()=>{
       
         
-        loggedInUser && isBoss &&   NotAllowed()
+        !loggedInUser || !isBoss &&   NotAllowed()
     
       },[])
 
