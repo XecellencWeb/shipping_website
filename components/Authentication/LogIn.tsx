@@ -82,7 +82,7 @@ if(loggedInUser){
     <div className='w-screen h-[500vh] absolute top-0 left-0 isolate z-50'>
       <div className="bg-black opacity-30 w-full h-full blur-lg absolute top-0 left-0 -z-10"/>
       <div className="wrapper min-h-[70vh] rounded-[1rem] bg_background absolute mt-20 top-0 left-1/2 -translate-x-1/2">
-        <form onSubmit={sumbitForm} action="" className="w-96 flex mt-20 flex-col gap-2 mx-auto">
+        <form onSubmit={sumbitForm} action="" className="small_wrapper_xx flex mt-20 flex-col gap-2 mx-auto">
           <h1 className="mb-8 text-center font-bold">Log In</h1>
             {
               details.map(

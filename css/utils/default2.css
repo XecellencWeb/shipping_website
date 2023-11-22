@@ -89,6 +89,11 @@
     margin-inline: auto;
 }
 
+.small_wrapper_xx{
+    width: min(100% - 3rem, 24rem);
+    margin-inline: auto;
+}
+
 .bg--curved-bl{
     width: var(--curve-w);
     height: var(--curve-w);
