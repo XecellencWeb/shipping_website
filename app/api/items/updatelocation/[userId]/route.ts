@@ -35,24 +35,24 @@ export const PATCH  = async(req:Request, {params}:any)=>{
             linkname:'View update',
             linkurl:`${process.env.WEBSITE_URL}/userprofile`
         })
-        try {
+        
             for(const i of item.ownersEmail){
 
 
-                await sendMail({
+              const message =  await sendMail({
                     to:i,
                     subject,
                     html
                 })
                 
+
+                if(!message){
+                    return new Response(JSON.stringify('an error occured'), {status:500})
+                }
                 
                 
                 }
-        } catch (err:any) {
-            console.error(err)
-
-            return new Response(JSON.stringify(err.message), {status:err.status || 500})
-        }
+        
         
 
         const allItems = await Goods.find().sort({lastUpdated:-1})
