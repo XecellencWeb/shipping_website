@@ -43,7 +43,7 @@ const [loggedInUser,setloggedInUser] = useState<any>(null)
 
 
 
-    }, [pathname,params])
+    }, [])
 
 
     const isBoss:boolean = useMemo(() => (

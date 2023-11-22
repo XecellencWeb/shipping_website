@@ -26,12 +26,10 @@ const Profile = () => {
     }
 
 
-    useEffect(()=>{
-      
-        
-      !loggedInUser || isBoss &&   NotAllowed()
-  
-    },[])
+if(!loggedInUser || !isBoss ){
+  console.log('not allowed')
+  return NotAllowed()
+}
 
   return (
     
