@@ -1,4 +1,5 @@
-import { error } from 'console'
+
+import Error from 'next/error'
 import nodemailer from 'nodemailer'
 
 export const sendMail = async(mail)=>{
@@ -28,12 +29,10 @@ transporter.sendMail(Mail).then(_=>{
 
         return 'Sent'
 
-    }).catch(error =>{
+    }).catch(_ =>{
 
-        message.through = false
-
-        message.error = error
-        return 'an error occured.'
+        
+        throw new Error('an error occured.')
     })
 
     return message

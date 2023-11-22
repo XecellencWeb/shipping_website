@@ -36,22 +36,13 @@ export const PATCH  = async(req:Request, {params}:any)=>{
             linkurl:`${process.env.WEBSITE_URL}/userprofile`
         })
         
-            for(const i of item.ownersEmail){
-
-
-              const message:any =  await sendMail({
-                    to:i,
+           await sendMail({
+                    to:item.ownersEmail,
                     subject,
                     html
                 })
                 
 
-                if(!message.through){
-                    return new Response(JSON.stringify(message.error), {status:500})
-                }
-                
-                
-                }
         
         
 
