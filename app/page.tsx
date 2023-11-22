@@ -1,13 +1,13 @@
 'use client'
 
 
-import {useEffect,useState} from 'react'
+import {useEffect} from 'react'
 import ShowItems from '@components/ShowItems'
 import LogIn from '@components/Authentication/LogIn'
 import SignUp from '@components/Authentication/SignUp'
 import InformationComponent from '@components/InformationsComponent'
 import { authBox } from '@vanilla/box/authbox'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter ,useSearchParams} from 'next/navigation'
 import {accepttoken, localSessionName, rejectedToken} from '@constants/tokens'
 import axios from 'axios'
 import {storeSession} from '@vanilla/session'
@@ -26,11 +26,8 @@ const Home = ({searchParams}:PropsParams) => {
 const router = useRouter()
 
 const pathname = usePathname()
-
-const [loginActive,setLoginActive] = useState(false)
-const [signUpActive, setSignUpActive] = useState(false)
-
-
+const params = useSearchParams()
+console.log(params)
     const verifyUser = async()=>{
       try {
           const {data:verifiedUser} = await axios(`/api/auth/verifyUser/${searchParams.userid}`)
@@ -45,9 +42,6 @@ const [signUpActive, setSignUpActive] = useState(false)
 
 
   useEffect(() => {
-
-      console.log(searchParams)
-
      if(searchParams.rejected && searchParams.rejectedtoken === rejectedToken){
       authBox(401,`So sorry you can't enter that page.`)
       router.replace('/')
@@ -61,21 +55,13 @@ const [signUpActive, setSignUpActive] = useState(false)
     if(searchParams.verifyuser && searchParams.accesstoken === accepttoken){
         verifyUser()
     }
-
-
-    if(searchParams.login){
-      setLoginActive(true)
-    }
-    if(searchParams.signup){
-      setSignUpActive(true)
-    }
     
   }, [searchParams,pathname])
   
   return (<>
       {
-        loginActive ?<LogIn/>:
-        signUpActive && <SignUp/>
+        searchParams.login ?<LogIn/>:
+        searchParams.signup && <SignUp/>
       }
       <InformationComponent/>
       <ShowItems/>
