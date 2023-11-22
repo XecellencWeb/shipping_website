@@ -21,7 +21,8 @@ const Profile = () => {
 
 
     const NotAllowed = ()=>{
-      navigator.replace(`/?rejected=true&rejectedtoken=${rejectedToken}`)
+      navigator.replace(`/?rejected=true&rejectedtoken=${rejectedToken}`
+      )
 
 
 

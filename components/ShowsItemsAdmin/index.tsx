@@ -13,7 +13,7 @@ const SetOrders = createContext({})
 const index = () => {
 
   const {loggedInUser}:any = useUserData()
-  const {data,loading} = useFetch(`/api/items/get/all/${loggedInUser._id}`)
+  const {data,loading} = useFetch(`/api/items/get/all/${loggedInUser?._id}`)
 
   const [orders,setOrders] = useState()
 

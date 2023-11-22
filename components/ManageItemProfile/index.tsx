@@ -9,7 +9,7 @@ import React from 'react'
 
 const index = () => {
   const {loggedInUser}:any = useUserData()
-  const {data:orders,loading} = useFetch(`/api/items/get/owner/${loggedInUser._id}`)
+  const {data:orders,loading} = useFetch(`/api/items/get/owner/${loggedInUser?._id}`)
 
 
   return (
