@@ -48,7 +48,7 @@ const index = () => {
              
                 name:'Profile',
                 path:'/profile',
-                ico:"bi bi-person-circle",
+                ico:"bi bi-person-circle fill-white text-white",
                 visibility:loggedIn && isBoss,
                 className:"flex gap-2 items-center hover:text-red-500 text-base"
                 
@@ -57,7 +57,7 @@ const index = () => {
              
                 name:'Your Profile',
                 path:'/userprofile',
-                ico:"bi bi-person-circle",
+                ico:"bi bi-person-circle fill-white text-white",
                 visibility:loggedIn && !isBoss,
                 className:"flex gap-2 items-center hover:text-red-500 text-base"
                 

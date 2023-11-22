@@ -26,8 +26,8 @@ const Profile = () => {
     }
 
 
-if(!loggedInUser || !isBoss ){
-  console.log('not allowed')
+if(loggedInUser === null || isBoss === false){
+  
   return NotAllowed()
 }
 

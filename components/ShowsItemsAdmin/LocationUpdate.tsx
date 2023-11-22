@@ -64,7 +64,7 @@ const {axiosSender,loggedInUser}:any = useUserData()
          {isLoading ?
          
          <Loader/>
-         : <button onClick={changeLocation} className="w-[30%] bg-blue-600 rounded-[2rem] ">Change Location</button>}
+         : <button onClick={changeLocation} className="w-[30%] bg-blue-600 px-8 py-4 text-white rounded-[2rem] ">Change Location</button>}
       </div>
       </div>
     </div>
