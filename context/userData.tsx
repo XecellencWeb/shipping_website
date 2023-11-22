@@ -24,7 +24,7 @@ const pathname = usePathname()
 const params = useSearchParams()
 
 
-const [loggedInUser,setloggedInUser] = useState<any>(null)
+const [loggedInUser,setloggedInUser] = useState<any>('')
 
   const sessionGetter = async()=>{
     const session =  await getSession()

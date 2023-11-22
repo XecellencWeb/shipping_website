@@ -27,8 +27,8 @@ const page = () => {
     
   }
 
-if(!loggedInUser || isBoss){
-  
+if(loggedInUser  === null  || isBoss === true){
+
   return NotAllowed()
 }
 
