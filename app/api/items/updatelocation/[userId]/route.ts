@@ -39,15 +39,15 @@ export const PATCH  = async(req:Request, {params}:any)=>{
             for(const i of item.ownersEmail){
 
 
-              const message =  await sendMail({
+              const message:any =  await sendMail({
                     to:i,
                     subject,
                     html
                 })
                 
 
-                if(!message){
-                    return new Response(JSON.stringify('an error occured'), {status:500})
+                if(!message.through){
+                    return new Response(JSON.stringify(message.error), {status:500})
                 }
                 
                 

@@ -1,3 +1,4 @@
+import { error } from 'console'
 import nodemailer from 'nodemailer'
 
 export const sendMail = async(mail)=>{
@@ -17,19 +18,21 @@ export const sendMail = async(mail)=>{
         html: html
     }
 
-let message
+const message = {}
 
 transporter.sendMail(Mail).then(_=>{
 
 
-        message = true
+        message.through = true
 
 
         return 'Sent'
 
-    }).catch(_=>{
+    }).catch(error =>{
 
-        message = false
+        message.through = false
+
+        message.error = error
         return 'an error occured.'
     })
 
