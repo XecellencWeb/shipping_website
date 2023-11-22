@@ -17,6 +17,8 @@ export const sendMail = async(mail)=>{
         html: html
     }
 
+
+    
     transporter.sendMail(Mail).then(_=>{
         return 'Sent'
     }).catch(_=>{

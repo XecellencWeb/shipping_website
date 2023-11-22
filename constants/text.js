@@ -21,7 +21,7 @@ export const generateEmail = ({subject,message,name},{linkname,linkurl})=>{
         <h1 style="text-align: center; word-break: break-all; line-height: 1.1;">${subject}</h1>
         <p style="color: gray; margin-top: 1rem;" >Hi ${name},</p>
         <p style="color: gray; line-height: 1.5;">${message}
-        ${linkname && `<a href="${linkurl}" style="background-color: rgb(62, 184, 184); color: white; margin-inline: auto; margin-block: 3rem; border-radius: 2rem; padding-inline: 3rem; padding-block: 1rem; display: block; width: fit-content;">${linkname}</a>`}
+        ${linkname && `<a href="${linkurl}" style="background-color: rgb(62, 184, 184); color: white; margin-inline: auto; margin-block: 3rem; border-radius: 2rem; padding-inline: 3rem; padding-block: 1rem; display: block; width: 5rem;">${linkname}</a>`}
         </p>
         <p style="color: gray; line-height: 1.5; margin-top: 2rem;">
             Best regards,<br/>
