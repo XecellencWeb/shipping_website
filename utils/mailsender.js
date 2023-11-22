@@ -1,5 +1,4 @@
 
-import Error from 'next/error'
 import nodemailer from 'nodemailer'
 
 export const sendMail = async(mail)=>{
