@@ -16,21 +16,18 @@ import {storeSession} from '@vanilla/session'
 
 
 // app/posts/page.ts
-type PropsParams = {
-  params: {},
-  searchParams: { [key: string]: string | string[] | undefined },
-}
 
 
-const Home = ({searchParams}:PropsParams) => {
+
+const Home = () => {
 const router = useRouter()
 
 const pathname = usePathname()
 const params = useSearchParams()
-console.log(params)
+
     const verifyUser = async()=>{
       try {
-          const {data:verifiedUser} = await axios(`/api/auth/verifyUser/${searchParams.userid}`)
+          const {data:verifiedUser} = await axios(`/api/auth/verifyUser/${params.get('userid')}`)
           storeSession(verifiedUser,localSessionName)
           router.replace('/')
       } catch (err:any) {
@@ -42,26 +39,26 @@ console.log(params)
 
 
   useEffect(() => {
-     if(searchParams.rejected && searchParams.rejectedtoken === rejectedToken){
+     if(params.get('rejected') && params.get('rejectedtoken') === rejectedToken){
       authBox(401,`So sorry you can't enter that page.`)
       router.replace('/')
     }
-     if(searchParams.login && searchParams.rejectedtoken === rejectedToken){
+     if(params.get('login') && params.get('rejectedtoken') === rejectedToken){
       authBox(401,`you must login to perform operations on site.`)
       router.replace('/?login=true')
     }
 
 
-    if(searchParams.verifyuser && searchParams.accesstoken === accepttoken){
+    if(params.get('verifyuser') && params.get('accesstoken') === accepttoken){
         verifyUser()
     }
     
-  }, [searchParams,pathname])
+  }, [params,pathname])
   
   return (<>
       {
-        searchParams.login ?<LogIn/>:
-        searchParams.signup && <SignUp/>
+        params.get('login') ?<LogIn/>:
+        params.get('signup') && <SignUp/>
       }
       <InformationComponent/>
       <ShowItems/>
