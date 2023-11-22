@@ -27,20 +27,21 @@ const page = () => {
     
   }
 
+if(!loggedInUser || isBoss){
+  
+  return NotAllowed()
+}
+
+
+
 return (
-  loggedInUser && !isBoss?
+  
   <>
   <ManageItemProfile/>
 
-
-
-
   <LogoutBtn/>
   </>
-  :(
-      
-      NotAllowed()
-  )
+  
 )
 }
 
