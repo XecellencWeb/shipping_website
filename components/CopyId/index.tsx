@@ -42,7 +42,7 @@ const copyToClip = ()=>{
     )}
 
 
-        <p className="text-base">{!clipboard ? 'Copy Id to Clipboard': 'Copied!'}</p>
+        <p className="text-base text-white">{!clipboard ? 'Copy Id to Clipboard': 'Copied!'}</p>
 
 
     </div>
