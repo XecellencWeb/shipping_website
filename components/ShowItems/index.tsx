@@ -102,7 +102,7 @@ const index = () => {
             }
         </div>
        {orderData && <button onClick={()=>setFullView(prev => !prev)} className="mt-4 italic text-blue-700 text-[1.7rem] hover:underline">{!fullView?"View Details":"Less Details"}</button>}
-            {orderData && <Link className='bg-orange-500 rounded-full px-12 py-4 my-20 mx-auto hover:bg-orange-700 block text-center text-white small_wrapper' href='/userprofile'>Manage your Goods</Link>}
+            {orderData && <Link className='bg-orange-500 rounded-full px-12 py-4 my-20 mx-auto hover:bg-orange-700 block text-center text-white small_wrapper' href='/userprofile'>Manage Goods</Link>}
         {
             fullView && (
                 <Receipt data={orderData}/>

@@ -176,7 +176,7 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
           <Loader/>
           
           :  <div className="flex gap-5 ">
-                <button onClick={updateTrackingData} className="w-full sm:w-[30%] bg-blue-600 rounded-[1rem] h-10 hover:bg-blue-900 text-white">{method} tracking goods</button>
+                <button onClick={updateTrackingData} className="w-full sm:w-[30%] bg-blue-600 sm:text-base rounded-[1rem] h-10 hover:bg-blue-900 text-white">{method}</button>
             { method === 'create' &&   <button onClick={()=>cancelBtn(false)} className="h_white w-full sm:w-[30%] shadow-lg">Cancel</button>}
             </div>}
       </div>
