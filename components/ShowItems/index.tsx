@@ -33,8 +33,9 @@ const index = () => {
             id:orderData?._id,
             //@ts-ignore
             name: orderData?.itemsBought.map(item=> item.itemName).join(','),
-            quantity:orderData?.quantity,
-            location:orderData?.currentLocation,
+            itemsQuantity:orderData?.quantity,
+            itemsWeight:orderData?.totalWeight+'kg',
+            currentLocation:orderData?.currentLocation,
             status:orderData?.status,
             lastUpdated:hourlyDate(orderData?.lastUpdated)
     }),[orderData])
@@ -84,7 +85,7 @@ const index = () => {
               :orderData &&  Object.entries(trackedGood)?.map(
                     ([key,value],index)=>(
                         <div key={index} className={"w-full border-2 border-b-none border-solid border-[rgba(204,204,204,.3)] text-center"}>
-                            <h1 className="text-lg py-2 font-bold border-b-2 bg-blue-500 opacity-90 border-solid border-blue-800">{key}</h1>
+                            <h1 className="text-lg py-2 font-bold border-b-2 bg-blue-500 opacity-90 border-solid border-blue-800">{formatObjectKey(key)}</h1>
                             <p className="text-base mt-8 pb-8 opacity-50 flex gap-2 items-center justify-center">{formatObjectKey(value?.toString())}
                             
                             {

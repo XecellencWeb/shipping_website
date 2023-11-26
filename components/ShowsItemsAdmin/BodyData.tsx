@@ -22,7 +22,8 @@ const BodyData = ({data,userView}:DataRepresentor) => {
               id:data?._id,
               name: data?.itemsBought.map(item=> item.itemName).join(','),
               quantity:data?.quantity,
-              location:data?.currentLocation,
+              itemsWeight:data?.totalWeight+'kg',
+              currentLocation:data?.currentLocation,
               status:data?.status,
               lastUpdated:hourlyDate(data?.lastUpdated)
            }

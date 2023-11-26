@@ -25,7 +25,8 @@ const HeadData = ({data,userView}:DataRepresentor) => {
               id:data?._id,
               name: data?.itemsBought.map(item=> item.itemName).join(','),
               quantity:data?.quantity,
-              location:data?.currentLocation,
+              itemsWeight:data?.totalWeight+'kg',
+              currentLocation:data?.currentLocation,
               status:data?.status,
               lastUpdated: hourlyDate(data?.lastUpdated)
            }
@@ -68,7 +69,7 @@ const HeadData = ({data,userView}:DataRepresentor) => {
               {Object.entries(dataRearranged)?.map(
                 ([key,value],index)=>(
                     <div key={index} className={"w-[16.66%] border-2 border-b-none border-solid border-[rgba(204,204,204,.3)] text-center cursor-pointer"}>
-                        <h1 className="text-lg py-2 font-bold border-b-2 bg-blue-500 opacity-90 border-solid border-blue-800">{key}</h1>
+                        <h1 className="text-lg py-2 font-bold border-b-2 h-20 bg-blue-500 opacity-90 border-solid border-blue-800">{formatObjectKey(key)}</h1>
                         <p className="text-base mt-4 h-40 pb-8 w-full opacity-50  px-2 break-words inline-block gap-2 justify-center items-center">{formatObjectKey(value?.toString())}
                         {
                           key === 'status' && (
