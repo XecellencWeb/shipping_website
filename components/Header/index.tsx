@@ -40,7 +40,7 @@ export const Services:ShippingServices[] = [
 const index = () => {
   return (
     <div className='w-screen h-[70vh] sm:h-screen isolate '>
-      <Image src={Shipping} alt='Cover Photo' className='absolute top-0 left-0 w-screen h-screen object-cover -z-10' />
+      <Image src={Shipping} alt='Cover Photo' className='absolute top-0 left-0 w-screen h-full object-cover -z-10' />
        
        
        <div className="pt-20 wrapper h-full flex justify-between gap-5 text-white">
