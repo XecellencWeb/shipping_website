@@ -20,7 +20,7 @@ const LogoutBtn = () => {
 
 
   return (
-<button onClick={logout}  className="flex mx-auto my-40 justify-center bg-pink-400 opacity-80 hover:opacity-100 px-20 py-4 rounded-full gap-2 items-center">
+<button onClick={logout}  className="flex mx-auto my-40 justify-center bg-pink-400 opacity-80 hover:opacity-100 px-20 py-2 rounded-full gap-2 items-center">
      <p className="text-white text-base">Log Out</p>
   </button>
   )
