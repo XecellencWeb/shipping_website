@@ -14,7 +14,7 @@ const index = () => {
       {
                 Services.map(
                   (service,index)=>(
-                    <div key={index} className="flex w-full gap-2 bg-white bg-opacity-20 p-8 rounded-[1rem">
+                    <div key={index} className="flex w-full gap-2 bg-white bg-opacity-70 dark:bg-opacity-20 p-8 rounded-[1rem">
                       <i className={service.emoji + ' text-[1.2rem] '}>
                       </i>
                       <div className="">
