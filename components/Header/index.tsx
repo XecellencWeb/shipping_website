@@ -35,23 +35,33 @@ export const Services:ShippingServices[] = [
   },
 ]
 
+type headerProps = {
+  homePage: boolean,
+  displayText?: string
+}
 
 
-const index = () => {
+
+
+
+const index = ({homePage, displayText}:headerProps) => {
   return (
-    <div className='w-screen h-[70vh] sm:h-screen isolate relative '>
+    <div className={`w-screen h-[70vh] ${homePage ?'sm:h-screen': 'sm:h-[70vh]'} isolate relative -top-20`}>
       <Image src={Shipping} alt='Cover Photo' className='absolute top-0 left-0 w-screen h-full object-cover -z-10' />
        
        
        <div className="pt-20 wrapper h-full flex justify-between gap-5 text-white">
         <div className="flex h-full flex-col max-xl:justify-center w-full">
-            <h1 className="font_monoton text-[3rem] sm:text-[6rem] text-white break-words">{welcomeHeader}</h1>
-            <p className="mt-8 text-white">{welcomeText}</p>
+            <h1 className="font_monoton text-[3rem] lg:text-[6rem] text-white break-words">{displayText || welcomeHeader}</h1>
+
+           { homePage && <>
+           <p className="mt-8 text-white">{welcomeText}</p>
             <p className="mt-12 mr-8 max-sm:hidden text-base text-white">{IntroductionText}</p>
+            </>}
           </div>
           <div className=" xl:block hidden w-[40%] text-white">
             <div className="w-full flex flex-col gap-10 text-white">
-              {
+              {homePage &&
                 Services.map(
                   (service,index)=>(
                     <div key={index} className="flex w-full gap-2 bg-white bg-opacity-20 p-8 rounded-[1rem] text-white">

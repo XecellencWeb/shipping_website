@@ -29,7 +29,7 @@ const defineOrders:any = useSetOrders()
 
 const [isLoading, setIsLoading] = useState<boolean>(false)
 
-const [name,setName] = useState(data?.name)
+const [distance,setDistance] = useState(data?.name)
 const [description,setDescription] = useState(data?.description)
 const [address,setaddress] = useState(data?.address)
 const [clientNumber,setclientNumber] = useState(data?.clientNumber)
@@ -41,23 +41,13 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
 
 
     const values:formElements[] = [
-
-
-
-
-        {
-          name:'name',
-          type:'input',
-          value:'text',
-          state:setName,
-          Value:name
-        },
         {
             name:'description',
             type:'input',
             value:'text',
             state:setDescription,
             Value:description,
+            allSeen:true
           },
         {
           name:'address',
@@ -65,6 +55,7 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
           value:'text',
           state:setaddress,
           Value:address,
+          allSeen:true
         },
         {
           name:'clientNumber',
@@ -79,12 +70,15 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
           value:'text',
           state:setcurrentLocation,
           Value:currentLocation,
+          allSeen:false
+          
         },
         {
           name:'deliveryMethod',
           type:'input',
           value:'text',
           state:setdeliveryMethod,
+          allSeen:true,
           Value:deliveryMethod
         },
         
@@ -92,6 +86,36 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
 
 
 
+    
+
+    const distanceSetter = [
+      
+      {
+        name:'distance',
+        type:'input',
+        value:'domestic',
+        state:setDistance,
+        Value:distance,
+        allSeen:true
+      },
+      {
+        name:'distance',
+        type:'input',
+        value:'international',
+        state:setDistance,
+        Value:distance,
+        allSeen:true
+      },
+    ]
+
+
+
+
+
+
+
+
+      
 
 
 
@@ -158,12 +182,41 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
 
 
   return (
-    <div className='my-20 flex justify-center'>
+    <div className='my-20 flex flex-col small_wrapper justify-center'>
+
+
+      {method.toLowerCase() === 'calculate' && (
+        <h1 className="font_ultra text-[3rem] mb-8">Calculate Shipping</h1>
+      )}
+      <h1 className="text-2xl font-bold mb-1">Distance</h1>
+      <div className="flex gap-5 w-full mb-12 ">
+      {
+        distanceSetter?.map(
+          (distance,key)=>(
+            <div key={key} className="flex gap-2 w-full">
+              <input value={distance.value} onChange={(e)=>distance.state(e.target.value)} type="radio" name={distance.name} className="" />
+              <p className="">{distance.value}</p>
+              </div>
+            )
+            )
+          }
+      </div>
+
+
       <div className="small_wrapper flex flex-col gap-4">
-      {values?.map(
+
+      {method.toLowerCase() !== 'calculate'?values?.map(
         (values,index)=>
       <FormElements Value={values.Value} key={index} name={values.name} type={values.type} value='text' state={values.state}/>
-    )}
+    ):
+    
+    values?.filter(item=> item.allSeen)?.map(
+      (values,index)=>
+    <FormElements Value={values.Value} key={index} name={values.name} type={values.type} value='text' state={values.state}/>
+  )
+    
+    
+    }
 
             <div className="w-full my-20">
                     <h1 className="text-center text lg font-bold mb-8">Items Bought</h1>

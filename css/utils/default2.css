@@ -71,6 +71,9 @@
 .font_ops{
     font-family: var(--font_ops) !important;
 }
+.font_grandi{
+    font-family: var(--font_grandi) !important;
+}
 
 
 

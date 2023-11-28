@@ -7,11 +7,12 @@ import { formatObjectKey } from '@vanilla/string_methods/sting'
 import Loader from '@components/Loader'
 
 export type formElements = {
-    name:String,
-    type:String,
+    name:string,
+    type:string,
     value:string,
     state: any,
     Value?:any,
+    allSeen?:boolean
     
 }
 
@@ -46,9 +47,9 @@ export const ButtonProvider = ({name,image,signInFunction}:btnProvider)=>{
 const FormElements = ({name,type,value,state,Value,}:formElements) => {
 return (
     type == 'input'?(
-        <div className="flex relative">
+        <div className="flex relative w-full">
             <p className="w-20 text-base absolute top-1/2 -translate-y-1/2 opacity-60 ml-8">{formatObjectKey(name)}:</p>
-        <input value={Value} onChange={(e)=>state(e.target.value)} className='p-4 pl-32 w-full rounded-[1rem]' type={value}  />
+        <input name={name} value={Value} onChange={(e)=>state(e.target.value)} className='p-4 pl-32 w-full rounded-[1rem]' type={value}  />
         </div>
 
 

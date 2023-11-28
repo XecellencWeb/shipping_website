@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Grandiflora+One&display=swap');
 
 
 
@@ -33,6 +33,7 @@
 --font_mooli: 'Mooli', sans-serif;
 --font_lobster: 'Lobster', sans-serif;
 --font_ops: 'black ops one', sans-serif;
+--font-grandi: 'grandiflora',sans-serif;
 
 
 

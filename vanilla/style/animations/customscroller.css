@@ -77,3 +77,9 @@
     --shadow_color: #333;
     box-shadow: 0 0 1rem calc(var(--custom-scroll)/100 * 2rem) var(--shadow_color);
 }
+
+
+[data-scroll=opacity-change]{
+    --opacity: calc(min(max(var(--scroll), 0),60)/100);
+    background-color: rgba(245, 245, 245,var(--opacity));
+}

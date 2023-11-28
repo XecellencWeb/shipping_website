@@ -32,7 +32,7 @@ export const customScroll = ()=>{
     appearElement && observer.observe(appearElement)
 }
 
-const oneTimeCall = ()=>{
+export const oneTimeCall = ()=>{
     const htmlElement = document.documentElement
     
     const height = window.screen.height

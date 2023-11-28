@@ -2,7 +2,6 @@
 
 
 import {useEffect} from 'react'
-import ShowItems from '@components/ShowItems'
 import LogIn from '@components/Authentication/LogIn'
 import SignUp from '@components/Authentication/SignUp'
 import InformationComponent from '@components/InformationsComponent'
@@ -11,6 +10,9 @@ import { usePathname, useRouter ,useSearchParams} from 'next/navigation'
 import {accepttoken, localSessionName, rejectedToken} from '@constants/tokens'
 import axios from 'axios'
 import {storeSession} from '@vanilla/session'
+import Header from  '@components/Header'
+import GettingStarted from '@components/GettingStarted'
+
 
 
 
@@ -60,8 +62,11 @@ const params = useSearchParams()
         params.get('login') ?<LogIn/>:
         params.get('signup') && <SignUp/>
       }
+      <Header homePage={true}/>
       <InformationComponent/>
-      <ShowItems/>
+      
+      <GettingStarted/>
+      
     </>
   )
 }
