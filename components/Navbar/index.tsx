@@ -32,7 +32,7 @@ const index = () => {
                 name:'Log In',
                 path:'/?login=true',
                 visibility:!loggedIn,
-                className:"h_black sm:w-40 text-center text_1 h-12 flex justify-center items-center"
+                className:"h_black sm:w-40 text-center text_1 h-8 flex justify-center items-center"
                 
             },
             {
@@ -40,7 +40,7 @@ const index = () => {
                 name:'Sign Up',
                 path:'/?signup=true',
                 visibility:!loggedIn,
-                className:"h_white sm:w-40 text-center text_1 h-12 flex justify-center items-center"
+                className:"h_white sm:w-40 text-center text_1 h-8 flex justify-center items-center"
                 
             },
             {
