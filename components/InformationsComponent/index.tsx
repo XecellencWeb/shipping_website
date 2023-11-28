@@ -118,7 +118,7 @@ const index = () => {
 
 
 
-  
+
 
 
               useEffect(()=>{
@@ -188,7 +188,7 @@ const index = () => {
               <div key={key} className={`flex flex-col items-center small_wrapper gap-2 relative ${key === activeSlide ?InAnimations[currentAnimator]: 'hidden'}`}>
 
               <Image key={key} src={text.image} alt='textimony Image' className='rounded-full w-40 h-40'/>
-              <p className="text-center font-thin font_grandi">
+              <p className="text-center text-base font-thin font_grandi">
                 {text.remark}
               </p>
               <h1 className="text-3xl font-semibold text-blue-900">{text.name}</h1>
