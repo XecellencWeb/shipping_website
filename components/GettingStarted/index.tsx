@@ -21,7 +21,7 @@ const GettingStarted = () => {
         <i className="bi bi-sign-railroad text-5xl"></i>
             <button className='px-4 py-2 bg-slate-50 bg-opacity-50  text-base block w-40  m-4 rounded-lg '>track goods</button>
         </div>
-        <button onClick={()=>setShrinker(false)} className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500"><p className="">x</p></button>
+        <button onClick={()=>setShrinker(false)} className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500"><p className="text-white">x</p></button>
     </div>
     :(
         <div className='sticky -bottom-5 w-32 h-32 flex items-center justify-center rounded-full'>

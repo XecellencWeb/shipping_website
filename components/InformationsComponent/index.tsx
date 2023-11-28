@@ -144,14 +144,6 @@ const index = () => {
 
 
 
-              useEffect(()=>{
-
-
-              incrementState(shippingServices,activeService,setActiveService)
-                
-
-                
-              },[activeService])
 
 
 
