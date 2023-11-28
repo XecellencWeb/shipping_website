@@ -192,7 +192,7 @@ const index = () => {
 
       <div className="my-40">
         <h1 className="font_croissant text-5xl font-bold mb-4">About Us</h1>
-        <div className="px-4">
+        <div className="px-2">
         {
           aboutUs?.map(
             (about,key)=>(
