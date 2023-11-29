@@ -12,8 +12,21 @@ const fragileOption = [
 
 
 
-const ManipulateitemsBought = ({setter}:{
+
+const shippingRates:{
+  domestic:number,
+  international:number
+} = {
+  ['domestic']: 20.00,
+  ['international']: 50.00
+}
+
+
+
+const ManipulateitemsBought = ({calculating,setter,calculatingFor}:{
     setter:any
+    calculating:boolean,
+    calculatingFor:string,
 }) => {
 
     const [itemName,setItemName] = useState<string>('')
@@ -64,7 +77,11 @@ const ManipulateitemsBought = ({setter}:{
 
 
 
+    const getShippingRate = (value:string)=>{
 
+      //@ts-ignore
+      return shippingRates[value] && shippingRates[value]
+    }
 
 
 
@@ -88,13 +105,27 @@ const ManipulateitemsBought = ({setter}:{
       </div>
       <div className="flex gap-2 max-sm:flex-col">
             {
+              !calculating?
                 boughtItemsOtherProperties?.map(
                     (filler,index)=>(
                         <FormElements key={index} Value={filler.Value} name={filler.name} type={filler.type} value={filler.value} state={filler.state}/>
                     )
+                ):(
+                  boughtItemsOtherProperties?.filter(items => items.name !== 'ItemPrice')?.map(
+                    (filler,index)=>(
+                        <FormElements key={index} Value={filler.Value} name={filler.name} type={filler.type} value={filler.value} state={filler.state}/>
+                    )
                 )
+                )
+
             }
+
       </div>
+            {
+              calculating && (
+                <p className="text-center mt-8 capitalize">{calculatingFor} Price: <span className="font-black">${getShippingRate(calculatingFor) || ' Select type of Shipping'}</span> </p>
+              )
+            }
       <button onClick={addItem} className="h_white shadow-lg mt-2">Add To Items Bought</button>
     </div>
   )

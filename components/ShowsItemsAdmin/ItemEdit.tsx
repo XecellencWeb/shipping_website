@@ -29,7 +29,7 @@ const defineOrders:any = useSetOrders()
 
 const [isLoading, setIsLoading] = useState<boolean>(false)
 
-const [distance,setDistance] = useState(data?.distance)
+const [distance,setDistance] = useState<string>(data?.distance || '')
 const [description,setDescription] = useState(data?.description)
 const [address,setaddress] = useState(data?.address)
 const [clientNumber,setclientNumber] = useState(data?.clientNumber)
@@ -95,7 +95,6 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
         type:'input',
         value:'domestic',
         state:setDistance,
-        Value:distance,
         allSeen:true
       },
       {
@@ -103,7 +102,6 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
         type:'input',
         value:'international',
         state:setDistance,
-        Value:distance,
         allSeen:true
       },
     ]
@@ -221,7 +219,7 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
             <div className="w-full my-20">
                     <h1 className="text-center text lg font-bold mb-8">Items Bought</h1>
             <BoughtItems setter = {setitemsBought} data={itemsBought}/>
-            <ManipulateitemsBought setter={setitemsBought}/>
+            <ManipulateitemsBought calculatingFor={distance} calculating={method?.toLowerCase() === 'calculate'} setter={setitemsBought}/>
             </div>
 
           {isLoading ?
