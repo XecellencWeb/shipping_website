@@ -8,6 +8,7 @@ import logo from '@assets/logo.png'
 import { websiteName } from '@constants/text'
 import FormElements from '@components/Authentication/FormElements'
 import { scrollToId } from '@vanilla/animations/customscroll'
+import SocialIcons from '@components/SocialIcons'
 
 
 
@@ -93,6 +94,7 @@ const [message,setMessage] = useState<string>('')
             )
           }
         </div>
+        <SocialIcons/>
       </div>
         <p className="text-center text-base mb-8">The Best Shipping Providers</p>
     </div>
