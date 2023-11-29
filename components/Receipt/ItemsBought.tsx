@@ -8,7 +8,7 @@ export type itemsBought = {
         itemQuantity: number;
         itemPrice: number;
         weightPerItem: number; // Weight per item in kg
-      
+        fragile:string
 }
 
 
@@ -42,7 +42,7 @@ const ItemsBought = ({data,setter}:itemsBoughtProps) => {
 
   return (
     <div className="flex w-full">
-                <div className="flex flex-col w-[35%] ">
+                <div className="flex flex-col w-full ">
                     <div className="text-lg font-bold"> Item Name </div>
                     {
                         data?.map(
@@ -55,7 +55,7 @@ const ItemsBought = ({data,setter}:itemsBoughtProps) => {
                         )
                     }
                 </div>
-                <div className="flex flex-col w-[35%] ">
+                <div className="flex flex-col w-full ">
                     <div className="text-lg font-bold"> Item Quantity </div>
                     {
                         data?.map(
@@ -68,7 +68,7 @@ const ItemsBought = ({data,setter}:itemsBoughtProps) => {
                         )
                     }
                 </div>
-                <div className="flex flex-col  w-[35%] items-end">
+                <div className="flex flex-col  w-full">
                     <div className="text-lg font-bold"> Item Price </div>
                     {
                         data?.map(
@@ -78,6 +78,20 @@ const ItemsBought = ({data,setter}:itemsBoughtProps) => {
                                         style: 'currency',
                                         currency: 'USD',
                                     })}</p>
+                                    
+                                </div>
+                            )
+                        )
+                    }
+                </div>
+
+                <div className="flex flex-col w-full items-center ">
+                    <div className="text-lg font-bold"> Fragile</div>
+                    {
+                        data?.map(
+                            (item,index)=>(
+                                <div onClick={()=>{setter && deleteItem(index)}} onMouseOver={()=>setActiveIndexStyle(index)} onMouseOut={()=>setActiveIndexStyle(null)} key={index} className={`h-12  ${activeIndexStyle === index ? 'opacity-30':'opacity-70'}`}>
+                                    <p className="text-base">{item.fragile}</p>
                                     
                                 </div>
                             )

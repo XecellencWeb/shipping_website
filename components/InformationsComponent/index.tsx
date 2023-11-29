@@ -89,7 +89,7 @@ const index = () => {
   const [currentAnimator, setCurrentAnimator] = useState<number>(0)
   const [activeService,setActiveService] = useState<number>(0)
 
-  console.log(currentAnimator)
+  
 
 
 
@@ -178,7 +178,7 @@ const index = () => {
 
 
 
-      <div className="my-20">
+      <div className="my-20" id='testimonies'>
         {
           testimonies?.map(
             (text,key)=>(
@@ -195,7 +195,7 @@ const index = () => {
         }
       </div>
 
-      <div className="my-40">
+      <div className="my-40" id='about'>
         <h1 className="font_croissant text-5xl font-bold mb-4">About Us</h1>
         <div className="px-2">
         {
@@ -213,7 +213,7 @@ const index = () => {
 
 
 
-      <div className="my-40">
+      <div className="my-40" id='services'>
           <h1 className="font_croissant text-5xl font-bold mb-8">Services</h1>
           <div className="flex flex-col lg:flex-row gap-5 lg:h-[50vh]">
             {
@@ -222,7 +222,7 @@ const index = () => {
                   <div key={key} onClick={()=>setActiveService(key)} className={`${activeService !== key ? 'opacity-50 scale-y-90 blur-[2px]': 'border-[.5rem] border-solid border-blue-700'} transition-all w-full relative isolate flex items-end h-full  max-lg:min-h-[60vh] overflow-hidden rounded-[1rem]`}>
                       <Image src={service.image} alt='shipping service image' className='w-full h-full absolute -z-10 object-cover'/>
                     <div className="bg-white bg-opacity-75 p-4  max-sm:h-[70%] ">
-                      <h1 className="text-gray-700 font_alp font-bold text-3xl my-2">{service.title}</h1>
+                      <h1 className="text-blue-900 font_alp font-bold text-3xl my-2">{service.title}</h1>
                       <p className="font_grandi text-gray-700 text-base">{service.description}</p>
                     </div>
                   </div>

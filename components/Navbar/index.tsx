@@ -32,7 +32,7 @@ const index = () => {
                 name:'Log In',
                 path:'/?login=true',
                 visibility:!loggedIn,
-                className:"h_black sm:w-40 text-center text_1 h-8 flex justify-center items-center"
+                className:"h_black sm:w-40 text-center text_1 h-10 flex justify-center items-center"
                 
             },
             {
@@ -40,7 +40,7 @@ const index = () => {
                 name:'Sign Up',
                 path:'/?signup=true',
                 visibility:!loggedIn,
-                className:"h_white sm:w-40 text-center text_1 h-8 flex justify-center items-center"
+                className:"h_white sm:w-40 text-center text_1 h-10 flex justify-center items-center"
                 
             },
             {
@@ -85,9 +85,9 @@ const renderedPaths:NavbarProps[] = useMemo (()=>(paths?.filter((property)=>(pro
     <>
     <div data-scroll='opacity-change' className='sticky z-10 h-20 flex items-center top-0  w-screen'>
         <ul className='relative head_wrapper justify-end flex gap-3 sm:gap-10  text-white'>
-            <Link href='/' className="absolute -top-2 left-0 flex items-center gap-1">
+            <Link href='/' className="absolute top-0 left-0 flex items-center gap-1">
                 <Image src={logo} width={50} height={50} alt='Logo Image'/>
-                <p className="hover:scale-110 text-base max-sm:hidden font_ops">{websiteName}</p>
+                <p className="hover:scale-110 text-base max-sm:hidden font_ops text-white">{websiteName}</p>
             </Link>
       {
          renderedPaths?.map(

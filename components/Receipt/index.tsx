@@ -9,7 +9,7 @@ import { hourlyDate } from '@vanilla/dataFormater'
 
 export type orderType = {
     _id: string;
-    name: string;
+    distance: string;
     description?: string;
     quantity: number;
     currentLocation: string;
@@ -25,6 +25,7 @@ export type orderType = {
       itemQuantity: number;
       itemPrice: number;
       weightPerItem: number;
+      fragile:string
 }[]
 }
 export type ReceiptInfo = {
@@ -35,6 +36,7 @@ const index = ({data}:ReceiptInfo) => {
 
     const GoodsData = useMemo(()=>({
         id: data?._id,
+        distance:data?.distance,
         customerAddress: data?.address,
         location: data?.currentLocation,
         clientNumber: data?.clientNumber,

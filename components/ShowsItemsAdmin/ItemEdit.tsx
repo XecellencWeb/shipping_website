@@ -29,7 +29,7 @@ const defineOrders:any = useSetOrders()
 
 const [isLoading, setIsLoading] = useState<boolean>(false)
 
-const [distance,setDistance] = useState(data?.name)
+const [distance,setDistance] = useState(data?.distance)
 const [description,setDescription] = useState(data?.description)
 const [address,setaddress] = useState(data?.address)
 const [clientNumber,setclientNumber] = useState(data?.clientNumber)

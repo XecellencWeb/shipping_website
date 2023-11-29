@@ -103,3 +103,13 @@ export const animeInsert = (anime,time,elem)=>{
     
 
 }
+
+
+
+export const scrollToId = (id)=>{
+    const elem = document.querySelector('#'+id)
+
+    elem.scrollIntoView({
+        behavior:'smooth'
+    })
+}

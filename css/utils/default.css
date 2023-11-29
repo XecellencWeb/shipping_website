@@ -313,15 +313,20 @@
 
 
 
-.slide_out{
-    animation: slide-out 1.5s forwards;
+.scale_in{
+    animation: scale-in 1.5s forwards;
 }
 
-@keyframes slide-out {
+@keyframes scale-in {
     0%{
-        translate: 0 0;
-        opacity: 1;
-        display: flex;
+        scale: 0;
+        opacity: .5;
+        
     }
     
+    100%{
+        opacity: 1;
+        scale: 100%;
+        
+    }
 }

@@ -9,7 +9,7 @@ import Loader from '@components/Loader'
 export type formElements = {
     name:string,
     type:string,
-    value:string,
+    value?:string,
     state: any,
     Value?:any,
     allSeen?:boolean
@@ -56,7 +56,12 @@ return (
 
 
     ):type === 'textarea' && (
-        <textarea value={Value} onChange={(e)=>state(e.target.value)} className='p-4 w-full h-20  rounded-[1rem]' placeholder={`Enter your ${name}...`}/>
+        <div className="relative w-full " style={{
+            width: 'min(100% , 32rem)'
+        }}>
+            <p className=" text-base absolute dark:text-white text-gray-700 top-0 mt-2 opacity-60 ml-2">{name}:</p>
+        <textarea value={Value} onChange={(e)=>state(e.target.value)} className='p-4 pt-10 w-full resize-none h-32  rounded-[1rem] dark:text-white text-gray-700' />
+        </div>
     )
 )
 }
