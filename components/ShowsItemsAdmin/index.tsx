@@ -1,13 +1,14 @@
 'use client'
 
 
-import React, {useEffect, createContext, useState, useContext } from 'react'
+import React, {useEffect, createContext, useState, useContext, useMemo } from 'react'
 import CurrentlyTracking from './CurrentlyTracking'
 import TrackNew from './TrackNew'
 import useFetch from '@app/hooks/fetch'
 import { useUserData } from '@context/userData'
 import Loader from '@components/Loader'
 import UnshippedGoods from '@components/UnshippedGoods'
+import CallOut from '@components/CallOut'
 
 const SetOrders = createContext({})
 
@@ -111,14 +112,20 @@ const index = () => {
   const {loggedInUser}:any = useUserData()
   const {data,loading} = useFetch(`/api/items/get/all/${loggedInUser?._id}`)
 
-  const [orders,setOrders] = useState()
+  const [orders,setOrders] = useState<[] | null>()
   const [showUnshipped,setShowUnshipped] = useState<boolean>(true)
 
     useEffect(()=>{
         setOrders(data)
     },[data])
 
+      const unShippedLength:number = useMemo(()=>(
+          unshippedGoods? unshippedGoods?.length: 0
+      ),[unshippedGoods])
 
+      const shippedLength:number = useMemo(()=>(
+          orders? orders?.length: 0
+      ),[orders])
 
 
 
@@ -143,6 +150,10 @@ const index = () => {
     </div>
     </>
 }
+
+    <CallOut numberofShipped={shippedLength} numberofUnshipped={unShippedLength} unshippedSeen={showUnshipped} setter={setShowUnshipped}/>
+
+
     </SetOrders.Provider>
   )
 }

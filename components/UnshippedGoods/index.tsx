@@ -40,7 +40,7 @@ const UnshippedGoods = ({data}:UnshippedGoodsProps) => {
             {
                 data?.map(
                     (goods)=>(
-                        <Goods goods={goods}/>
+                        <Goods key={goods._id} goods={goods}/>
                     )
                 )
             }
