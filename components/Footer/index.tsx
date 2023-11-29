@@ -69,7 +69,7 @@ const [message,setMessage] = useState<string>('')
       <div className="wrapper mt-20 mb-8 flex max-md:flex-col gap-5 justify-between text_white">
       <Link href='/' className=" flex items-center gap-1 w-full">
                 <Image src={logo} width={50} height={50} alt='Logo Image'/>
-                <p className="hover:scale-110 text-base max-sm:hidden font_ops">{websiteName}</p>
+                <p className="hover:scale-110 text-base  font_ops">{websiteName}</p>
       </Link>
       <div className="flex gap-2 w-full md:w-[50%]">
         <FormElements name='send us a message' Value={message} state={setMessage} type='textarea'/>
