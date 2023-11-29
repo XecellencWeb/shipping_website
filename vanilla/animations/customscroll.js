@@ -110,6 +110,7 @@ export const scrollToId = (id)=>{
     const elem = document.querySelector('#'+id)
 
     elem.scrollIntoView({
+        block:'center',
         behavior:'smooth'
     })
 }

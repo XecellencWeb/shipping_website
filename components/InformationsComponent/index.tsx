@@ -219,7 +219,7 @@ const index = () => {
             {
               shippingServices?.map(
                 (service,key)=>(
-                  <div key={key} onClick={()=>setActiveService(key)} className={`${activeService !== key ? 'opacity-50 scale-y-90 blur-[2px]': 'border-[.5rem] border-solid border-blue-700'} transition-all w-full relative isolate flex items-end h-full  max-lg:min-h-[60vh] overflow-hidden rounded-[1rem]`}>
+                  <div key={key} onClick={()=>setActiveService(key)} onMouseOver={()=>setActiveService(key)} className={`${activeService !== key ? 'opacity-50 scale-y-90 blur-[2px]': 'border-[.5rem] border-solid border-blue-700'} transition-all w-full relative isolate flex items-end h-full  max-lg:min-h-[60vh] overflow-hidden rounded-[1rem]`}>
                       <Image src={service.image} alt='shipping service image' className='w-full h-full absolute -z-10 object-cover'/>
                     <div className="bg-white bg-opacity-75 p-4  max-sm:h-[70%] ">
                       <h1 className="text-blue-900 font_alp font-bold text-3xl my-2">{service.title}</h1>

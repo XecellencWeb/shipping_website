@@ -52,7 +52,7 @@ const index = ({homePage, displayText}:headerProps) => {
        
        <div className="pt-20 wrapper h-full flex justify-between gap-5 text-white">
         <div className="flex h-full flex-col max-xl:justify-center w-full">
-            <h1 className="font_monoton text-[3rem] lg:text-[6rem] text-white break-words">{displayText || welcomeHeader}</h1>
+            <h1 className="font_monoton text-[3rem] lg:text-[6rem] text-white break-words stroke_design">{displayText || welcomeHeader}</h1>
 
            { homePage && <>
            <p className="mt-8 text-white">{welcomeText}</p>
