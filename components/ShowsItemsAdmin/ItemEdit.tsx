@@ -7,9 +7,12 @@ import BoughtItems, { itemsBought } from '@components/Receipt/ItemsBought'
 import {useState} from 'react'
 import ManipulateitemsBought from './ManipulateitemsBought'
 import {authBox} from '@vanilla/box/authbox'
+import {equate} from '@vanilla/equations'
 import { useUserData } from '@context/userData'
 import Loader from '@components/Loader'
 import { useSetOrders } from '.'
+import GaugeLoader from '@components/GuageLoader'
+
 
 
 type EditData = Partial<ReceiptInfo> & {
@@ -36,7 +39,12 @@ const [clientNumber,setclientNumber] = useState(data?.clientNumber)
 const [currentLocation,setcurrentLocation] = useState(data?.currentLocation)
 const [deliveryMethod,setdeliveryMethod] = useState(data?.deliveryMethod)
 const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought || [])
-
+const [calculationResult,setCalculationResult] = useState<{
+  quantity: number,
+  totalWeight: number,
+  totalPrice: number
+} | null>()
+const [loadingResult,setLoadingResult] = useState<boolean>(false)
 
 
 
@@ -126,7 +134,44 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
 
       const updateTrackingData = async()=>{
 
+
+
+        if(method?.toLowerCase() === 'calculate'){
+
+
+          const {quantity,totalWeight,totalPrice} = equate(itemsBought)
+
+          setCalculationResult({
+            quantity,
+            totalPrice,
+            totalWeight
+          })
+
+          setLoadingResult(true)
+
+          setTimeout(()=>{
+            setLoadingResult(false)
+          },1000)
+
+          return
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if(method === 'create'){
+
 
           try {
             setIsLoading(true)
@@ -229,7 +274,32 @@ const [itemsBought,setitemsBought] = useState<itemsBought[]>(data?.itemsBought |
           :  <div className="flex gap-5 ">
                 <button onClick={updateTrackingData} className="w-full sm:w-[30%] bg-blue-600 sm:text-base rounded-[1rem] h-10 hover:bg-blue-900 text-white">{method}</button>
             { method === 'create' &&   <button onClick={()=>cancelBtn(false)} className="h_white w-full sm:w-[30%] shadow-lg">Cancel</button>}
-            </div>}
+            </div>
+            }
+
+          {
+            method?.toLowerCase() === 'calculate' && (
+              <div className="">
+                {
+                  loadingResult?(
+                    <GaugeLoader/>
+                  ):
+                  (
+                    calculationResult && (
+                      <>
+                      <div className="flex  mt-12">
+                        <p className="w-full">Total Quantity: <span className='font-black text-blue-800'>{calculationResult?.quantity}</span></p>
+                        <p className="w-full">Total Weight: <span className='font-black text-blue-800'>{calculationResult?.totalWeight}</span></p>
+                        <p className="w-full">Total Price: <span className='font-black text-blue-800'>{calculationResult?.totalPrice}</span></p>
+                      </div>
+                      <button className="text-base bg-orange-500 rounded-[1rem] px-4 py-2 text-white mt-2 hover:bg-orange-800">Ship Items</button>
+                      </>
+                    )
+                  )
+                }
+              </div>
+            )
+          }
       </div>
     </div>
   )

@@ -131,3 +131,44 @@
       opacity: 0;
     }
   }
+
+
+
+
+  .guage_container{
+    width: min(100%, 40rem);
+    height: 2.5rem;
+    border: 2px solid var(--text,#333);
+    padding: 5px;
+  }
+
+  .guage{
+    --timing: 1s;
+    height: 100%;
+    background-color: rgb(85, 85, 194);
+    animation: loading-guage var(--timing) forwards linear;
+  }
+
+  .guage_text{
+    color:#777777;
+    animation:transform-color .7s forwards linear
+  }
+
+  @keyframes transform-color {
+    100%{
+      color: #d4d3d3;
+    }
+  }
+
+
+  @keyframes loading-guage {
+
+    0%{
+      width: 0%;
+    }
+
+    100%{
+      width: 100%;
+    }
+    
+  }

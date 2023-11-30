@@ -1,21 +1,15 @@
 import { connectMongo } from "@utils/dbconnect"
 import Goods from '@models/trackedgoods'
 import { verifyBoss } from "@utils/authenticateUsers"
-
+import {equate} from '@vanilla/equations'
 
 export const POST = async (req:Request,{params}:any)=>{
     const items = await req.json()
 
     const {itemsBought} = items
     
-    let quantity = 0
-    let totalWeight = 0
 
-    for(const i of itemsBought){
-        quantity += i.itemQuantity
-
-        totalWeight += (i.itemQuantity * i.weightPerItem)
-    }
+    const {quantity,totalWeight,totalPrice} = equate(itemsBought)
 
 
 
@@ -26,7 +20,7 @@ export const POST = async (req:Request,{params}:any)=>{
             return new Response(JSON.stringify('you are not authenticated'), {status:401})
         }
 
-        const newItem:any = await Goods.create({...items,quantity,totalWeight})
+        const newItem:any = await Goods.create({...items,quantity,totalWeight,totalPrice})
 
         const allItems:any = await Goods.find().sort({lastUpdated:-1})
 

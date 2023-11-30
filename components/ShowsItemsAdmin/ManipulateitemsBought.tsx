@@ -32,6 +32,7 @@ const ManipulateitemsBought = ({calculating,setter,calculatingFor}:{
     const [itemName,setItemName] = useState<string>('')
     const [itemQuantity,setItemQuantity] = useState<string>('')
     const [itemPrice,setItemPrice] = useState<string>('')
+    const [fragile,setFragile] = useState<string>('')
     const [weightPerItem,setWeightPerItem] = useState<string>('')
 
 
@@ -64,11 +65,18 @@ const ManipulateitemsBought = ({calculating,setter,calculatingFor}:{
 
     const addItem = ()=>{
         //@ts-ignore
+
+
+
+
+
         setter(prev => [...prev,{
             itemName,
             itemQuantity:parseFloat(itemQuantity),
-            itemPrice:parseFloat(itemPrice),
-            weightPerItem:parseFloat(weightPerItem)
+            //@ts-ignore
+            itemPrice:calculating?parseFloat(shippingRates[calculatingFor]):parseFloat(itemPrice),
+            weightPerItem:parseFloat(weightPerItem),
+            fragile
 
         }])
     }
@@ -92,7 +100,10 @@ const ManipulateitemsBought = ({calculating,setter,calculatingFor}:{
         <h1 className="text-center text-lg font-bold">Edit Items Bought</h1>
         <div className="flex max-sm:flex-col gap-2 w-full">
       <FormElements Value={itemName} name={'item name'} type={'input'} value='text' state={setItemName}/>
-        <select name="" id="" className="sm:w-[25%] w-[10rem] rounded-[1rem] pl-4 py-4">
+
+
+
+        <select onChange={(e)=>setFragile(e.target.value)} className="sm:w-[25%] w-[10rem] rounded-[1rem] pl-4 py-4">
           <option value="" className="">Fragile</option>
           {
             fragileOption?.map(
