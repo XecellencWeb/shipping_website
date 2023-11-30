@@ -17,7 +17,7 @@ export type UnshippedGoods = orderType & {
 }
 
 type UnshippedGoodsProps = {
-    data:UnshippedGoods[]
+    data:UnshippedGoods[] | undefined
 }
 
 

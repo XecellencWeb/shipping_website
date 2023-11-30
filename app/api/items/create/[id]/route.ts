@@ -22,7 +22,9 @@ export const POST = async (req:Request,{params}:any)=>{
 
         const newItem:any = await Goods.create({...items,quantity,totalWeight,totalPrice})
 
-        const allItems:any = await Goods.find().sort({lastUpdated:-1})
+        const allItems:any = await Goods.find({
+            shipped: {$in: [true,null]}
+        }).sort({lastUpdated:-1})
 
         return new Response(JSON.stringify(allItems), {status:200})
 

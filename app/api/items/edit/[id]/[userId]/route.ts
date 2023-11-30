@@ -23,7 +23,10 @@ export const PATCH = async(req:Request, {params}:any)=>{
         }
 
         await Goods.findByIdAndUpdate(params.id,{quantity,totalWeight,...items},{new:true})
-        const allItems = await Goods.find().sort({lastUpdated:-1})
+        
+        const allItems:any = await Goods.find({
+            shipped: {$in: [true,null]}
+        }).sort({lastUpdated:-1})
 
         return new Response(JSON.stringify(allItems), {status:200})
     } catch (err:any) {

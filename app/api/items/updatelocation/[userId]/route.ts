@@ -6,7 +6,9 @@ import { sendMail } from "@utils/mailsender"
 
 export const PATCH  = async(req:Request, {params}:any)=>{
 
-    const {newLocation,itemId,status} = await req.json()
+    const newLocationData = await req.json()
+
+    const {itemId,newLocation} = newLocationData
 
     try {
         if(!verifyBoss(params.userId)){
@@ -18,8 +20,9 @@ export const PATCH  = async(req:Request, {params}:any)=>{
 
         item.currentLocation = newLocation
 
-        item.status = status
+        item.status = newLocationData.status || 'comming'
         item.lastUpdated = new Date()
+        item.shipped = newLocationData?.shipped || item?.shipped || null
 
         await item.save()
 
@@ -46,7 +49,9 @@ export const PATCH  = async(req:Request, {params}:any)=>{
         
         
 
-        const allItems = await Goods.find().sort({lastUpdated:-1})
+                const allItems:any = await Goods.find({
+                    shipped: {$in: [true,null]}
+                }).sort({lastUpdated:-1})
 
         return new Response(JSON.stringify(allItems), {status:200})
 

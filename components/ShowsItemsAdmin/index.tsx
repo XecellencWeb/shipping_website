@@ -7,7 +7,7 @@ import TrackNew from './TrackNew'
 import useFetch from '@app/hooks/fetch'
 import { useUserData } from '@context/userData'
 import Loader from '@components/Loader'
-import UnshippedGoods from '@components/UnshippedGoods'
+import UnshippedGoods, { UnshippedGoods as UnshippedType } from '@components/UnshippedGoods'
 import CallOut from '@components/CallOut'
 
 const SetOrders = createContext({})
@@ -17,71 +17,6 @@ const SetOrders = createContext({})
 
 
 
-              const unshippedGoods = [
-                {
-                  _id: '1',
-                  distance: 'domestic',
-                  shipped:false,
-                  description: 'Unshipped to Tongo',
-                  quantity: 5,
-                  currentLocation: 'abuja',
-                  status:'comming',
-                  lastUpdated: new Date(),
-                  // Additional properties
-                  address: 'Tongo',
-                  clientNumber: '123456789',
-                  totalWeight: 34, // Represented in kg
-                  deliveryMethod: 'train',
-                  itemsBought:[ 
-                    {
-                    itemName: 'nacklace',
-                    itemQuantity: 4,
-                    itemPrice: 30,
-                    weightPerItem: 0.5,
-                    fragile:'No'
-                    },
-                    {
-                    itemName: 'Hard drive',
-                    itemQuantity: 4,
-                    itemPrice: 30,
-                    weightPerItem: 0.5,
-                    fragile:'No'
-                    },
-
-              ]},
-
-                {
-                  _id: '1',
-                  distance: 'domestic',
-                  shipped:false,
-                  description: 'Unshipped to Tongo',
-                  quantity: 5,
-                  currentLocation: 'abuja',
-                  status:'comming',
-                  lastUpdated: new Date(),
-                  // Additional properties
-                  address: 'Tongo',
-                  clientNumber: '123456789',
-                  totalWeight: 34, // Represented in kg
-                  deliveryMethod: 'train',
-                  itemsBought:[ 
-                    {
-                    itemName: 'nacklace',
-                    itemQuantity: 4,
-                    itemPrice: 30,
-                    weightPerItem: 0.5,
-                    fragile:'No'
-                    },
-                    {
-                    itemName: 'Hard drive',
-                    itemQuantity: 4,
-                    itemPrice: 30,
-                    weightPerItem: 0.5,
-                    fragile:'No'
-                    },
-
-              ]},
-              ]
 
 
 
@@ -111,13 +46,17 @@ const index = () => {
 
   const {loggedInUser}:any = useUserData()
   const {data,loading} = useFetch(`/api/items/get/all/${loggedInUser?._id}`)
+  const {data:unshipped,loading:unshippedLoading} = useFetch(`/api/items/get/allUnshipped/${loggedInUser?._id}`)
 
   const [orders,setOrders] = useState<[] | null>()
+  const [unshippedGoods,setUnshippedGoods] = useState<UnshippedType[] | undefined>()
   const [showUnshipped,setShowUnshipped] = useState<boolean>(true)
 
     useEffect(()=>{
         setOrders(data)
-    },[data])
+        setUnshippedGoods(unshipped)
+
+    },[data,unshipped])
 
       const unShippedLength:number = useMemo(()=>(
           unshippedGoods? unshippedGoods?.length: 0
@@ -133,10 +72,11 @@ const index = () => {
   return (
     <SetOrders.Provider value={setOrders}>
    {
-    false?<Loader/>:
+    loading?<Loader/>:
    
     showUnshipped ? 
     (
+      unshippedLoading?<Loader/>:
       <UnshippedGoods data={unshippedGoods}/>
     )
 :

@@ -121,7 +121,25 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
 
 
 
-      
+      const newUnshipped = async()=>{
+        try {
+          setIsLoading(true)
+          await axiosSender.post(`/api/items/create/${loggedInUser._id}`,{
+            distance,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought,ownersEmail:[loggedInUser?.email],owners:[loggedInUser?.id],shipped:false
+          })
+
+          
+          authBox(200,'Item created Sucessfully')
+
+    
+
+          
+        } catch (err:any) {
+          console.error(err.response)
+        }finally{
+          setIsLoading(false)
+        }
+      }
 
 
 
@@ -176,7 +194,7 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
           try {
             setIsLoading(true)
             const {data:result} = await axiosSender.post(`/api/items/create/${loggedInUser._id}`,{
-              name,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought
+              distance,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought
             })
 
             cancelBtn(false)
@@ -205,7 +223,7 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
         try {
           setIsLoading(true)
           const {data:result}:any = await axiosSender.patch(`/api/items/edit/${data?._id}/${loggedInUser._id}`,{
-            name,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought
+            distance,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought
           })
 
           opener(false)
@@ -292,7 +310,7 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
                         <p className="w-full">Total Weight: <span className='font-black text-blue-800'>{calculationResult?.totalWeight}</span></p>
                         <p className="w-full">Total Price: <span className='font-black text-blue-800'>{calculationResult?.totalPrice}</span></p>
                       </div>
-                      <button className="text-base bg-orange-500 rounded-[1rem] px-4 py-2 text-white mt-2 hover:bg-orange-800">Ship Items</button>
+                      <button onClick={newUnshipped} className="text-base bg-orange-500 rounded-[1rem] px-4 py-2 text-white mt-2 hover:bg-orange-800">Request Shipping</button>
                       </>
                     )
                   )

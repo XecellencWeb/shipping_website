@@ -2,10 +2,11 @@ import {model, models, Schema} from "mongoose";
 
 
 const goodsSchema = new Schema({
-    name: String,
+    distance: String,
     description: String,
     quantity: Number,
     currentLocation: String,
+    shipped:Boolean,
     owners:{
         type:[String],
         default:[]
@@ -27,12 +28,14 @@ const goodsSchema = new Schema({
     address: String,
     clientNumber: String,
     totalWeight: Number, // Represented in kg
+    totalPrice: Number, // Represented in kg
     deliveryMethod: String,
     itemsBought: [{
       itemName: String,
       itemQuantity: Number,
       itemPrice: Number,
       weightPerItem: Number,
+      fragile:String
 }],
 createdAt: {
     type:Date,
