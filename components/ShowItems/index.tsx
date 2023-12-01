@@ -70,7 +70,7 @@ const index = () => {
 
 
   return (
-    <div className='my-20 min-h-screen' id='tracking'>
+    <div className='my-20 pt-40 min-h-screen' id='tracking'>
       <div className="flex w-full sm:w-[70%] gap-5">
         <input ref={goodsidref}  placeholder='Enter Goods Id' type="text" name="" id="" className="p-4 w-full rounded-sm"/>
         <button onClick={findGoods} className="w-[30%] bg-blue-700 text-white hover:bg-blue-950 rounded-lg">Find Goods</button>

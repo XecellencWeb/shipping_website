@@ -3,10 +3,11 @@
 import React from 'react'
 import { useUserData } from '@context/userData'
 import { useRouter } from 'next/navigation'
-import { authBox } from '@vanilla/box/authbox'
+import Header from '@components/Header'
 import ManageItemProfile from '@components/ManageItemProfile'
 import LogoutBtn from '@components/Authentication/LogoutBtn'
 import { rejectedToken } from '@constants/tokens'
+import { websiteName } from '@constants/text'
 
 
 
@@ -37,6 +38,7 @@ if(loggedInUser  === null  || isBoss === true){
 return (
   
   <>
+  <Header displayText={`Manage and Explore the ${websiteName}`}/>
   <ManageItemProfile/>
 
   <LogoutBtn/>

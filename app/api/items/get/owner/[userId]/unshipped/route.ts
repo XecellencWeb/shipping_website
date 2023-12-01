@@ -12,7 +12,7 @@ export const GET = async(req:Request, {params}:any)=>{
 
         const ownerItems = await Goods.find({
             owners: params.userId,
-            shipped: { $in: [true, null] }
+            shipped: false
             
           }).sort({lastUpdated: -1})
 

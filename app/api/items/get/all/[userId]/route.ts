@@ -17,6 +17,7 @@ export const GET = async(req:Request, {params}:any)=>{
 
         return new Response(JSON.stringify(allItems), {status:200})
     } catch (err:any) {
+        console.error(err)
         return new Response(JSON.stringify(err.message), {status:err.status || 500})
     }
 }

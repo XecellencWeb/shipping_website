@@ -36,7 +36,7 @@ export const Services:ShippingServices[] = [
 ]
 
 type headerProps = {
-  homePage: boolean,
+  homePage?: boolean,
   displayText?: string
 }
 

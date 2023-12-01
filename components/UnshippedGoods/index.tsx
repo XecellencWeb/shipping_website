@@ -17,13 +17,14 @@ export type UnshippedGoods = orderType & {
 }
 
 type UnshippedGoodsProps = {
-    data:UnshippedGoods[] | undefined
+    data:UnshippedGoods[] | undefined,
+    isBoss?:boolean
 }
 
 
 
 
-const UnshippedGoods = ({data}:UnshippedGoodsProps) => {
+const UnshippedGoods = ({data,isBoss}:UnshippedGoodsProps) => {
 
     
 
@@ -40,7 +41,7 @@ const UnshippedGoods = ({data}:UnshippedGoodsProps) => {
             {
                 data?.map(
                     (goods)=>(
-                        <Goods key={goods._id} goods={goods}/>
+                        <Goods key={goods._id} isBoss={isBoss} goods={goods}/>
                     )
                 )
             }

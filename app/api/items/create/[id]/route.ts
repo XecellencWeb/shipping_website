@@ -1,6 +1,6 @@
 import { connectMongo } from "@utils/dbconnect"
 import Goods from '@models/trackedgoods'
-import { verifyBoss } from "@utils/authenticateUsers"
+import { verifyBoss, verifyUser } from "@utils/authenticateUsers"
 import {equate} from '@vanilla/equations'
 
 export const POST = async (req:Request,{params}:any)=>{
@@ -16,11 +16,11 @@ export const POST = async (req:Request,{params}:any)=>{
     try {
 
         await connectMongo()
-        if(!verifyBoss(params.id)){
+        if(!verifyUser(params.id)){
             return new Response(JSON.stringify('you are not authenticated'), {status:401})
         }
 
-        const newItem:any = await Goods.create({...items,quantity,totalWeight,totalPrice})
+         await Goods.create({...items,quantity,totalWeight,totalPrice})
 
         const allItems:any = await Goods.find({
             shipped: {$in: [true,null]}

@@ -5,9 +5,10 @@ import React, { useEffect } from 'react'
 import ShowItemsAdmin from '@components/ShowsItemsAdmin'
 import { useUserData } from '@context/userData'
 import { useRouter } from 'next/navigation'
-import { authBox } from '@vanilla/box/authbox'
+import Header from '@components/Header'
 import LogoutBtn from '@components/Authentication/LogoutBtn'
 import { rejectedToken } from '@constants/tokens'
+import { websiteName } from '@constants/text'
 
 
 
@@ -35,6 +36,7 @@ if(loggedInUser === null || isBoss === false){
     
 
     <>
+    <Header displayText={`Control and recieve Great produce from ${websiteName}`}/>
     <ShowItemsAdmin/>
 
 

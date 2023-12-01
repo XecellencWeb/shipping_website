@@ -77,7 +77,7 @@ const index = () => {
     showUnshipped ? 
     (
       unshippedLoading?<Loader/>:
-      <UnshippedGoods data={unshippedGoods}/>
+      <UnshippedGoods isBoss={true} data={unshippedGoods}/>
     )
 :
 

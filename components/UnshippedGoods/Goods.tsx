@@ -13,8 +13,9 @@ import Loader from '@components/Loader'
 
 
 
-const Goods = ({goods}:{
-goods:UnshippedGoods
+const Goods = ({goods,isBoss}:{
+goods:UnshippedGoods,
+isBoss?:boolean
 }) => {
 
     const [showReceipt,setShowReceipt] = useState<boolean>(false)
@@ -61,7 +62,7 @@ goods:UnshippedGoods
             <div className="bg-white bg-opacity-60 dark:bg-opacity-20 absolute blur-[2px] top-0 left-0 right-0 bottom-0 -z-10"/>
             <div className="flex max-sm:flex-col max-sm:items-center gap-2 justify-between items-center pt-2">
             <h1 className="text-4xl font-black">{goods.itemsBought.map(item => item.itemName[0].toUpperCase()+item.itemName.slice(1)).join(', ')}</h1>
-            <button onClick={ShipUnshipped} className="bg-pink-500 px-4 py-2 rounded-lg font-bold cursor-pointer hover:scale-90">Ship Item</button>
+            {isBoss && <button onClick={ShipUnshipped} className="bg-pink-500 px-4 py-2 rounded-lg font-bold cursor-pointer hover:scale-90">Ship Item</button>}
             </div>
             <p className="text-center font_grandi">{goods.description}</p>
             <div className="flex max-sm:flex-col max-sm:items-center justify-between">
