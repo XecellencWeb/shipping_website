@@ -125,7 +125,7 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
         try {
           setIsLoading(true)
           await axiosSender.post(`/api/items/create/${loggedInUser._id}`,{
-            distance,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought,ownersEmail:[loggedInUser?.email],owners:[loggedInUser?.id],shipped:false
+            distance,description,address,clientNumber,deliveryMethod,currentLocation,itemsBought,ownersEmail:[loggedInUser?.email],owners:[loggedInUser?._id],shipped:false
           })
 
           
