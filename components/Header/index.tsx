@@ -51,18 +51,22 @@ const index = ({homePage, displayText}:headerProps) => {
        
        
        <div className="pt-20 wrapper h-full flex justify-between gap-5 text-white">
-        <div className="flex h-full flex-col max-xl:justify-center w-full">
-            <h1 className="font_monoton text-[3rem] lg:text-[6rem] text-white break-words stroke_design">{displayText || welcomeHeader}</h1>
+        <div className={`flex h-full flex-col ${homePage ? 'max-xl:justify-center':'justify-center'} w-full`}>
+            <h1 className={`${!homePage && 'text-center'} font_monoton text-[3rem] lg:text-[6rem] text-white break-words stroke_design`}>{displayText || welcomeHeader}</h1>
 
            { homePage && <>
            <p className="mt-8 text-white">{welcomeText}</p>
             <p className="mt-12 mr-8 max-sm:hidden text-base text-white">{IntroductionText}</p>
             </>}
+
+
+
           </div>
+          {homePage &&
           <div className=" xl:block hidden w-[40%] text-white">
             <div className="w-full flex flex-col gap-10 text-white">
-              {homePage &&
-                Services.map(
+              
+               { Services.map(
                   (service,index)=>(
                     <div key={index} className="flex w-full gap-2 bg-white bg-opacity-20 p-8 rounded-[1rem] text-white">
                       <i className={service.emoji + ' text-[1.2rem] text-white fill-white'}>
@@ -75,9 +79,11 @@ const index = ({homePage, displayText}:headerProps) => {
                     </div>
                   )
                 )
-              }
-            </div>
+              
+}            </div>
+
           </div>
+          }
         </div>
     </div>
   )
