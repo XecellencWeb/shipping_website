@@ -12,6 +12,8 @@ import { useUserData } from '@context/userData'
 import Loader from '@components/Loader'
 import { useSetOrders } from '.'
 import GaugeLoader from '@components/GuageLoader'
+import { rejectedToken } from '@constants/tokens'
+import { useRouter } from 'next/navigation'
 
 
 
@@ -22,7 +24,7 @@ type EditData = Partial<ReceiptInfo> & {
 }
 
 const ItemEdit = ({data,method,opener,cancelBtn}:EditData) => {
-
+const navigator = useRouter()
   //@ts-ignore
 const {axiosSender,loggedInUser} = useUserData()
 
@@ -122,6 +124,13 @@ const [loadingResult,setLoadingResult] = useState<boolean>(false)
 
 
       const newUnshipped = async()=>{
+
+        if(!loggedInUser){
+          navigator.push(`/?login=true&rejectedtoken=${rejectedToken}`)
+          return
+        }
+
+
         try {
           setIsLoading(true)
           await axiosSender.post(`/api/items/create/${loggedInUser._id}`,{

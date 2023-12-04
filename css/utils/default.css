@@ -335,12 +335,12 @@
 
 .stroke_design{
     --strokeColor: rgb(185, 105, 119);
-    --strokeWidth: .5px;
+    --strokeWidth: 1px;
     -webkit-text-stroke: var(--strokeWidth) var(--strokeColor);
 
 
-    @media (min-width:48rem) {
-        --strokeWidth: 1px;
+    @media (min-width:64rem) {
+        --strokeWidth: 2px;
     }
 
 }
